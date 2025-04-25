@@ -17,54 +17,39 @@ if errorlevel 3 (
     echo Start AI Benchmark...
     cd ov_benchmark
     echo If this is the first time you are running it, please set up the environment for AI Benchmark.
-    set /p choice="Do you want setup the environment? (y/n)"
+    choice /C YN /M "Do you want setup the environment?"
 
-    :aicheck_choice
-    if /i "%choice%"=="y" (
+    if errorlevel 2 (
+        echo.
+        echo.
+        echo Select not setup environment for AI Benchmark...
+    ) else if errorlevel 1 (
         echo.
         echo.
         echo Starting setup environment for AI Benchmark...
         call ov_benchmark_env_setup.bat
-        goto aiend
-    ) else if /i "%choice%"=="n" (
-        echo.
-        echo.
-        echo Select not setup environment for AI Benchmark...
-        goto aiend
-    ) else (
-        echo invalid Input! Please enter 'y' or 'n'.
-        set /p choice=
-        goto aicheck_choice
     )
-    :aiend
     call ov_benchmark_run.bat
     exit /b
+
 ) else if errorlevel 1 (
     echo.
     echo.
     echo Start CV Benchmark...
     cd cv_benchmark
     echo If this is the first time you are running it, please set up the environment for CV Benchmark.
-    set /p choice="Do you want setup the environment? (y/n)"
+    choice /C YN /M "Do you want setup the environment?"
 
-    :cvcheck_choice
-    if /i "%choice%"=="y" (
+    if errorlevel 2 (
+        echo.
+        echo.
+        echo Select not setup environment for CV Benchmark...
+    ) else if errorlevel 1 (
         echo.
         echo.
         echo Starting setup environment for CV Benchmark...
         call pipc_benchmark_env_setup.bat
-        goto cvend
-    ) else if /i "%choice%"=="n" (
-        echo.
-        echo.
-        echo Select not setup environment for CV Benchmark...
-        goto cvend
-    ) else (
-        echo invalid Input! Please enter 'y' or 'n'.
-        set /p choice=
-        goto cvcheck_choice
     )
-    :cvend
     call pipc_benchmark_run.bat
     exit /b
 )
