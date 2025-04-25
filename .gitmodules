@@ -1,0 +1,6 @@
+[submodule "ov_benchmark"]
+	path = ov_benchmark
+	url = https://github.com/junx8/ov_pipeline_benchmark.git
+[submodule "cv_benchmark"]
+	path = cv_benchmark
+	url = https://github.com/zyz9740/sample-pipeline.git
