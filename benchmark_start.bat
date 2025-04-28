@@ -28,6 +28,13 @@ if errorlevel 3 (
         echo.
         echo Starting setup environment for AI Benchmark...
         call ov_benchmark_env_setup.bat
+        if errorlevel 10 (
+            echo.
+            echo ---------------------------
+            echo Error !!!!
+            cd ..
+            exit /b
+        )
     )
     call ov_benchmark_run.bat
     exit /b
@@ -49,6 +56,13 @@ if errorlevel 3 (
         echo.
         echo Starting setup environment for CV Benchmark...
         call pipc_benchmark_env_setup.bat
+        if errorlevel 10 (
+            echo.
+            echo ---------------------------
+            echo Error !!!!
+            cd ..
+            exit /b
+        )
     )
     call pipc_benchmark_run.bat
     exit /b
